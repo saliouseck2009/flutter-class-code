@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class FourthExemple extends StatelessWidget {
   const FourthExemple({super.key});
@@ -23,17 +24,50 @@ class FourthExemple extends StatelessWidget {
                 child: const Icon(Icons.person))
           ],
         ),
-        body: const SizedBox(
+        body: SizedBox(
             child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 24,
             ),
-            TextFieldSection(),
-            SizedBox(
+            const TextFieldSection(),
+            const SizedBox(
               height: 16,
             ),
-            CardSection(),
+            const CardSection(),
+            const SizedBox(
+              height: 16,
+            ),
+            const CategorySection(),
+            const SizedBox(
+              height: 16,
+            ),
+            Divider(
+              color: Colors.grey.shade200,
+              thickness: 8,
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                children: [
+                  Container(
+                    width: 6,
+                    height: 35,
+                    color: const Color(0xff586BF2),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  const Text(
+                    "Curriculum",
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  )
+                ],
+              ),
+            )
           ],
         )),
       ),
@@ -70,8 +104,16 @@ class CardSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: <Color>[
+            Color(0xff586BF2),
+            Color(0xff4352B4),
+          ],
+          tileMode: TileMode.mirror,
+        ),
         borderRadius: BorderRadius.circular(16),
-        color: Colors.blue,
       ),
       margin: const EdgeInsets.symmetric(horizontal: 16.0),
       padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
@@ -120,6 +162,71 @@ class CardSection extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+class CategorySection extends StatelessWidget {
+  const CategorySection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        CategoryItem(
+          icon: Icons.warning,
+          color: Colors.green,
+          title: "New",
+        ),
+        CategoryItem(
+          icon: Icons.warning,
+          color: Colors.orange,
+          title: "New",
+        ),
+        CategoryItem(
+          icon: Icons.access_time_filled_sharp,
+          color: Colors.red,
+          title: "New",
+        ),
+        CategoryItem(
+          icon: Icons.warning,
+          color: Colors.yellow,
+          title: "New",
+        ),
+        CategoryItem(
+          icon: Icons.warning,
+          color: Colors.blue,
+          title: "New",
+        )
+      ],
+    );
+  }
+}
+
+class CategoryItem extends StatelessWidget {
+  final Color color;
+  final IconData icon;
+  final String title;
+  const CategoryItem(
+      {super.key,
+      required this.color,
+      required this.icon,
+      required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+              color: color, borderRadius: BorderRadius.circular(6)),
+          padding: const EdgeInsets.all(8),
+          child: Icon(icon),
+        ),
+        Text(title)
+      ],
     );
   }
 }

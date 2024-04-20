@@ -267,81 +267,96 @@ class CurriculumItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Container(
-          width: 150,
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: <Color>[
-                Color(0xff586BF2),
-                Color(0xff4352B4),
-              ],
-              tileMode: TileMode.mirror,
-            ),
-            borderRadius: BorderRadius.circular(16),
-          ),
-          margin: const EdgeInsets.symmetric(horizontal: 16.0),
-          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
-          child: Column(
-            children: [
-              const Icon(
-                Icons.star,
-                color: Colors.white,
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Text(
-                logoText,
-                style: const TextStyle(
-                  color: Colors.white,
-                ),
-              )
-            ],
-          ),
-        ),
-        const SizedBox(
-          width: 16,
-        ),
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(title,
-                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      fontWeight: FontWeight.bold, color: Colors.black38)),
-              const SizedBox(height: 8),
-              Text(description,
-                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      fontWeight: FontWeight.bold, color: Colors.black38)),
-              const SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "$price FCFA",
-                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        color: Colors.purple, fontWeight: FontWeight.bold),
-                  ),
-                  ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.purple,
-                        foregroundColor: Colors.white,
-                        shape: const RoundedRectangleBorder(),
-                      ),
-                      child: const Text("Purchase"))
+    return SizedBox(
+      height: 150,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            width: 150,
+            // height: 180,
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: <Color>[
+                  Color(0xff586BF2),
+                  Color(0xff4352B4),
                 ],
-              )
-            ],
+                tileMode: TileMode.mirror,
+              ),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            margin: const EdgeInsets.symmetric(horizontal: 16.0),
+            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.star, color: Colors.white, size: 50),
+                const SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  logoText,
+                  style: const TextStyle(color: Colors.white, fontSize: 17),
+                )
+              ],
+            ),
           ),
-        )
-      ],
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(title,
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelLarge
+                              ?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black38)),
+                      const SizedBox(height: 8),
+                      Text(description,
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelMedium
+                              ?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black38)),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "$price FCFA",
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                            color: Colors.purple, fontWeight: FontWeight.bold),
+                      ),
+                      ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.purple,
+                            foregroundColor: Colors.white,
+                            shape: const RoundedRectangleBorder(),
+                          ),
+                          child: const Text("Purchase"))
+                    ],
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

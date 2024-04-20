@@ -13,6 +13,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Home Page"),
+      ),
       body: SizedBox(
         width: double.infinity,
         child: Column(

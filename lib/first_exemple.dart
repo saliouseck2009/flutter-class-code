@@ -5,19 +5,20 @@ class FirstExemple extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: SizedBox(
-          width: double.infinity,
-          height: double.infinity,
-          child: Column(
-            children: [
-              ImageSection(),
-              LegendSection(),
-              NavigationSection(),
-              DescriptionSection()
-            ],
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("First Exemple"),
+      ),
+      body: const SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: Column(
+          children: [
+            ImageSection(),
+            LegendSection(),
+            NavigationSection(),
+            DescriptionSection()
+          ],
         ),
       ),
     );

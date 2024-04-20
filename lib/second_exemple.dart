@@ -5,48 +5,49 @@ class SecondExemple extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: SafeArea(
-          child: SizedBox(
-            height: double.infinity,
-            width: double.infinity,
-            child: ListView(
-              children: const [
-                CardWidget(
-                  title: "Nicky Larsonne",
-                  subtitle: "The Jetpack Hero",
-                ),
-                CardWidget(
-                  title: "Nicky Larsonne",
-                  subtitle: "The Jetpack Hero",
-                ),
-                CardWidget(
-                  title: "Nicky Larsonne",
-                  subtitle: "The Jetpack Hero",
-                ),
-                CardWidget(
-                  title: "Nicky Larsonne",
-                  subtitle: "The Jetpack Hero",
-                ),
-                CardWidget(
-                  title: "Nicky Larsonne",
-                  subtitle: "The Jetpack Hero",
-                ),
-                CardWidget(
-                  title: "Nicky Larsonne",
-                  subtitle: "The Jetpack Hero",
-                ),
-                CardWidget(
-                  title: "Nicky Larsonne",
-                  subtitle: "The Jetpack Hero",
-                ),
-                CardWidget(
-                  title: "Nicky Larsonne",
-                  subtitle: "The Jetpack Hero",
-                ),
-              ],
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Second Exemple"),
+      ),
+      body: SafeArea(
+        child: SizedBox(
+          height: double.infinity,
+          width: double.infinity,
+          child: ListView(
+            children: const [
+              CardWidget(
+                title: "Nicky Larsonne",
+                subtitle: "The Jetpack Hero",
+              ),
+              CardWidget(
+                title: "Nicky Larsonne",
+                subtitle: "The Jetpack Hero",
+              ),
+              CardWidget(
+                title: "Nicky Larsonne",
+                subtitle: "The Jetpack Hero",
+              ),
+              CardWidget(
+                title: "Nicky Larsonne",
+                subtitle: "The Jetpack Hero",
+              ),
+              CardWidget(
+                title: "Nicky Larsonne",
+                subtitle: "The Jetpack Hero",
+              ),
+              CardWidget(
+                title: "Nicky Larsonne",
+                subtitle: "The Jetpack Hero",
+              ),
+              CardWidget(
+                title: "Nicky Larsonne",
+                subtitle: "The Jetpack Hero",
+              ),
+              CardWidget(
+                title: "Nicky Larsonne",
+                subtitle: "The Jetpack Hero",
+              ),
+            ],
           ),
         ),
       ),
@@ -88,28 +89,31 @@ class CardWidget extends StatelessWidget {
           color: const Color(0xffE1E4D5)),
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.all(10),
-      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                  Text(
+                    subtitle,
+                  ),
+                ],
               ),
-              Text(
-                subtitle,
-              ),
-            ],
-          ),
-        ),
-        SizedBox(
-            height: 75,
-            width: 75,
-            child: Image.asset("assets/image/web-design.png"))
-      ]),
+            ),
+            SizedBox(
+                height: 30,
+                width: 30,
+                child: Image.asset("assets/image/web-design.png"))
+          ]),
     );
   }
 }

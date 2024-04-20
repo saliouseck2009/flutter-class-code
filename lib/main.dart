@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ui/exemple1/cubit/park_cubit_cubit.dart';
+import 'package:ui/exemple2/cubit/get_heroes_cubit.dart';
+import 'package:ui/exemple2/hero_repository.dart';
 import 'package:ui/first_exemple.dart';
 import 'package:ui/fourth_exemple.dart';
 import 'package:ui/second_exemple.dart';
 
 void main() {
-  runApp(const MaterialApp(home: HomePage()));
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider(
+        create: (context) => ParkCubitCubit(),
+      ),
+      BlocProvider(
+        create: (context) => GetHeroesCubit(HeroRepository()),
+      ),
+    ],
+    child: const MaterialApp(home: HomePage()),
+  ));
 }
 
 class HomePage extends StatelessWidget {
@@ -24,6 +38,7 @@ class HomePage extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
+                  context.read<ParkCubitCubit>().getPark();
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -37,6 +52,7 @@ class HomePage extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
+                  BlocProvider.of<GetHeroesCubit>(context).getHeroes();
                   Navigator.push(
                     context,
                     MaterialPageRoute(

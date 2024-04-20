@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ui/exemple2/cubit/get_heroes_cubit.dart';
+import 'package:ui/exemple2/hero.dart' as HeroModel;
 
 class SecondExemple extends StatelessWidget {
   const SecondExemple({super.key});
@@ -10,48 +13,49 @@ class SecondExemple extends StatelessWidget {
         title: const Text("Second Exemple"),
       ),
       body: SafeArea(
-        child: SizedBox(
-          height: double.infinity,
-          width: double.infinity,
-          child: ListView(
-            children: const [
-              CardWidget(
-                title: "Nicky Larsonne",
-                subtitle: "The Jetpack Hero",
-              ),
-              CardWidget(
-                title: "Nicky Larsonne",
-                subtitle: "The Jetpack Hero",
-              ),
-              CardWidget(
-                title: "Nicky Larsonne",
-                subtitle: "The Jetpack Hero",
-              ),
-              CardWidget(
-                title: "Nicky Larsonne",
-                subtitle: "The Jetpack Hero",
-              ),
-              CardWidget(
-                title: "Nicky Larsonne",
-                subtitle: "The Jetpack Hero",
-              ),
-              CardWidget(
-                title: "Nicky Larsonne",
-                subtitle: "The Jetpack Hero",
-              ),
-              CardWidget(
-                title: "Nicky Larsonne",
-                subtitle: "The Jetpack Hero",
-              ),
-              CardWidget(
-                title: "Nicky Larsonne",
-                subtitle: "The Jetpack Hero",
-              ),
-            ],
-          ),
+        child: BlocBuilder<GetHeroesCubit, GetHeroesState>(
+          builder: (context, state) {
+            if (state is GetHeroesInitial || state is GetHeroesLoading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is GetHeroesLoaded) {
+              return PageContent(
+                heroes: state.heroes,
+              );
+            } else if (state is GetHeroesFailed) {
+              return Center(child: Text(state.error));
+            } else {
+              return const Center(
+                child: Text("Data not availaible"),
+              );
+            }
+          },
         ),
       ),
     );
+  }
+}
+
+class PageContent extends StatelessWidget {
+  final List<HeroModel.Hero> heroes;
+  const PageContent({
+    super.key,
+    required this.heroes,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+        height: double.infinity,
+        width: double.infinity,
+        child: ListView.builder(
+          itemCount: heroes.length,
+          itemBuilder: (context, index) {
+            return CardWidget(
+              title: heroes[index].name,
+              subtitle: heroes[index].film,
+            );
+          },
+        ));
   }
 }
 

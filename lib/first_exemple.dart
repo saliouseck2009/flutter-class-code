@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ui/exemple1/cubit/park_cubit_cubit.dart';
+import 'package:ui/exemple1/model.dart';
 
 class FirstExemple extends StatelessWidget {
   const FirstExemple({super.key});
@@ -9,66 +12,108 @@ class FirstExemple extends StatelessWidget {
       appBar: AppBar(
         title: const Text("First Exemple"),
       ),
-      body: const SizedBox(
-        width: double.infinity,
-        height: double.infinity,
-        child: Column(
-          children: [
-            ImageSection(),
-            LegendSection(),
-            NavigationSection(),
-            DescriptionSection()
-          ],
-        ),
+      body: BlocBuilder<ParkCubitCubit, ParkCubitState>(
+        builder: (context, state) {
+          if (state is ParkCubitInitial || state is ParkCubitLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is ParkCubitLoaded) {
+            return PageContent(
+              park: state.park,
+            );
+          } else if (state is ParkCubitFailed) {
+            return Center(child: Text(state.error));
+          } else {
+            return const Center(
+              child: Text("Data not availaible"),
+            );
+          }
+        },
+      ),
+    );
+  }
+}
+
+class PageContent extends StatelessWidget {
+  final ParkModel park;
+  const PageContent({
+    super.key,
+    required this.park,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: double.infinity,
+      child: Column(
+        children: [
+          const ImageSection(),
+          LegendSection(
+            location: park.location,
+            rate: park.rating,
+            title: park.name,
+          ),
+          const NavigationSection(),
+          DescriptionSection(
+            description: park.description,
+          )
+        ],
       ),
     );
   }
 }
 
 class DescriptionSection extends StatelessWidget {
+  final String description;
   const DescriptionSection({
     super.key,
+    required this.description,
   });
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(16.0),
-      child: Text(
-          textAlign: TextAlign.justify,
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Text(textAlign: TextAlign.justify, description),
     );
   }
 }
 
 class LegendSection extends StatelessWidget {
+  final String title;
+  final String location;
+  final int rate;
   const LegendSection({
     super.key,
+    required this.title,
+    required this.location,
+    required this.rate,
   });
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(16.0),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
       child: Row(
         children: [
           Expanded(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text("Campagne Diomaye Président",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              Text(title,
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold)),
               Text(
-                "Dakar, Sénégal",
-                style: TextStyle(color: Colors.grey),
+                location,
+                style: const TextStyle(color: Colors.grey),
               )
             ]),
           ),
-          Icon(
+          const Icon(
             Icons.star,
             color: Colors.orangeAccent,
           ),
-          Text("41"),
-          SizedBox(
+          Text(rate.toString()),
+          const SizedBox(
             width: 16,
           )
         ],

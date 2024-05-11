@@ -7,6 +7,7 @@ import 'package:ui/exemple2/cubit/get_heroes_cubit.dart';
 import 'package:ui/exemple2/hero_repository.dart';
 import 'package:ui/first_exemple.dart';
 import 'package:ui/fourth_exemple.dart';
+import 'package:ui/networking/view.dart';
 import 'package:ui/second_exemple.dart';
 
 void main() {
@@ -78,6 +79,16 @@ class HomePage extends StatelessWidget {
                   );
                 },
                 child: const Text('Page 4'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const HomeNetwork()),
+                  );
+                },
+                child: const Text('Page 3'),
               ),
               const SizedBox(
                 height: 20,

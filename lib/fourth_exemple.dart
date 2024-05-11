@@ -24,74 +24,79 @@ class FourthExemple extends StatelessWidget {
         ],
       ),
       body: SizedBox(
-          child: Column(
-        children: [
-          const SizedBox(
-            height: 24,
-          ),
-          const TextFieldSection(),
-          const SizedBox(
-            height: 16,
-          ),
-          const CardSection(),
-          const SizedBox(
-            height: 16,
-          ),
-          const CategorySection(),
-          const SizedBox(
-            height: 16,
-          ),
-          Divider(
-            color: Colors.grey.shade200,
-            thickness: 8,
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Row(
-              children: [
-                Container(
-                  width: 6,
-                  height: 35,
-                  color: const Color(0xff586BF2),
-                ),
-                const SizedBox(
-                  width: 8,
-                ),
-                const Text(
-                  "Curriculum",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-              ],
+          child: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 24,
             ),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          const Padding(
-            padding: EdgeInsets.only(right: 16.0),
-            child: CurriculumItem(
-              logoText: "Elite class",
-              title: "Jing A studio",
-              description: "Tell me your dream",
-              price: "1000",
+            const TextFieldSection(),
+            const SizedBox(
+              height: 16,
             ),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          const Padding(
-            padding: EdgeInsets.only(right: 16.0),
-            child: CurriculumItem(
-              logoText: "Design class",
-              title: "Jing A studio",
-              description: "Tell me your dream",
-              price: "1000",
+            const CardSection(),
+            const SizedBox(
+              height: 16,
             ),
-          ),
-        ],
+            const CategorySection(),
+            const SizedBox(
+              height: 16,
+            ),
+            Divider(
+              color: Colors.grey.shade200,
+              thickness: 8,
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                children: [
+                  Container(
+                    width: 6,
+                    height: 35,
+                    color: const Color(0xff586BF2),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  const Text(
+                    "Curriculum",
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(right: 16.0),
+              child: CurriculumItem(
+                logoText: "Elite class",
+                title: "Jing A studio",
+                description: "Tell me your dream",
+                price: "1000",
+              ),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(right: 16.0),
+              child: CurriculumItem(
+                logoText: "Design class",
+                title: "Jing A studio",
+                description: "Tell me your dream",
+                price: "1000",
+              ),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+          ],
+        ),
       )),
     );
   }
@@ -274,8 +279,7 @@ class CurriculumItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            width: 150,
-            // height: 180,
+            width: MediaQuery.of(context).size.width * 1 / 3,
             decoration: BoxDecoration(
               gradient: const LinearGradient(
                 begin: Alignment.topCenter,
@@ -299,14 +303,14 @@ class CurriculumItem extends StatelessWidget {
                 ),
                 Text(
                   logoText,
-                  style: const TextStyle(color: Colors.white, fontSize: 17),
+                  style: const TextStyle(color: Colors.white, fontSize: 14),
                 )
               ],
             ),
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(4.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,

@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/exemple1/cubit/park_cubit_cubit.dart';
 import 'package:ui/exemple1/model.dart';
 
+import 'exemple1/cubit/get_parc_info_bloc.dart';
+
 class FirstExemple extends StatelessWidget {
   const FirstExemple({super.key});
 
@@ -12,7 +14,7 @@ class FirstExemple extends StatelessWidget {
       appBar: AppBar(
         title: const Text("First Exemple"),
       ),
-      body: BlocBuilder<ParkCubitCubit, ParkCubitState>(
+      body: BlocBuilder<GetParcInfoBloc, ParkCubitState>(
         builder: (context, state) {
           if (state is ParkCubitInitial || state is ParkCubitLoading) {
             return const Center(child: CircularProgressIndicator());
